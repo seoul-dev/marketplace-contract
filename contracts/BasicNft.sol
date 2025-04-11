@@ -4,7 +4,7 @@ pragma solidity 0.8.28;
 import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
 contract BasicNft is ERC721 {
-    string public constant TOKEN_URI = "https://test.com"
+    string public constant TOKEN_URI = "https://test.com";
 
     uint256 private s_tokenCounter;
 
@@ -21,7 +21,7 @@ contract BasicNft is ERC721 {
     }
 
     function tokenURI(uint256 tokenId) public view override returns (string memory) {
-        require(_exists(tokenId), "ERC721Metadata: URI query for nonexistent token");
+        _requireOwned(tokenId);
         return TOKEN_URI;
     }
 
